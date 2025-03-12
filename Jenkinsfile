@@ -6,9 +6,9 @@ pipeline {
     }
 
     environment {
-        BRANCH_NAME = ""
+        BRANCH_NAME = "main"
         GIT_CRED = ""
-        GIT_PROJECT_URL = ""
+        GIT_PROJECT_URL = "https://github.com/GwenolaKomatchouNgoukak/clinic.git"
 
     }
 
