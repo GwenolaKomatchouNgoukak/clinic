@@ -48,5 +48,13 @@ pipeline {
 }
             }
         }
+
+        stage('Quality Gate Check'){
+            steps{
+              script{
+                 waitForQualityGate abortPipeline: true, credentialsId: "${SONAQUBE_CRED}" 
+              }
+            }
+        }
     }
 }
