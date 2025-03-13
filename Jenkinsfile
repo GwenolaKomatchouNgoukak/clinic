@@ -13,6 +13,11 @@ pipeline {
         SONAQUBE_CRED = "c64d5c79-5ea7-41f3-a03a-bcb7b6e37f9d"
         SONAQUBE_INSTALLATION = "sonar"
         SCANNER_HOME = tool 'sonar-env'
+        JFROG_CRED = "43657b42-1428-46be-a142-415fa85a7c70"
+        ARTIFACTORY_URL = "http://54.166.164.106:8082/artifactory/Clinic_repo/"
+        ARTIFACTPATH = "target/*.jar"
+        ARTIFACTTARGETPATH = 'release_${BUILD_ID}.jar'
+        REPO = "Clinic_repo"
 
     }
 
@@ -56,5 +61,33 @@ pipeline {
               }
             }
         }
+
+        ```stage('Code Package'){
+            steps{
+                sh 'mvn package -DskipTests'
+            }
+        }
+      
+        stage('Upload Jar to Jfrog'){
+            steps{
+                withCredentials([usernamePassword(credentialsId: "${JFROG_CRED}", \
+                 usernameVariable: 'ARTIFACTORY_USER', passwordVariable: 'ARTIFACTORY_PASSWORD')]) {
+                    script {
+                        // Define the artifact path and target location
+                        //def artifactPath = 'target/*.jar'
+                        //def targetPath = "release_${BUILD_ID}.jar"
+
+                        // Upload the artifact using curl
+                        sh """
+                            curl -u ${ARTIFACTORY_USER}:${ARTIFACTORY_PASSWORD} \
+                                 -T ${ARTIFACTPATH} \
+                                 ${ARTIFACTORY_URL}/${REPO}/${ARTIFACTTARGETPATH}
+                        """
+                    }
+                }
+            }
+
+        }
+
     }
 }
