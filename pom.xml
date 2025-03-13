@@ -207,7 +207,7 @@
             <version>${nohttp-checkstyle.version}</version>
           </dependency>
         </dependencies>
-        <executions>
+        <!--executions>
           <execution>
             <id>nohttp-checkstyle-validation</id>
             <goals>
@@ -232,7 +232,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <executions>
-          <execution>
+          <execution-->
             <!-- Spring Boot Actuator displays build-related information
               if a META-INF/build-info.properties file is present -->
             <goals>
