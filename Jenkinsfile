@@ -14,7 +14,7 @@ pipeline {
         SONAQUBE_INSTALLATION = "sonar"
         SCANNER_HOME = tool 'sonar-env'
         JFROG_CRED = "43657b42-1428-46be-a142-415fa85a7c70"
-        ARTIFACTORY_URL = "http://54.166.164.106:8082/artifactory"
+        ARTIFACTORY_URL = "http://54.208.231.234:8082/artifactory"
         ARTIFACTPATH = "target/*.jar"
         ARTIFACTTARGETPATH = 'release_${BUILD_ID}.jar'
         REPO = "Clinic_repo"
